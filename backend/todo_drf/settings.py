@@ -42,9 +42,12 @@ INSTALLED_APPS = [
     
     'rest_framework',
 
+    'corsheaders',
+
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware', # add this line to enable CORS headers
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -52,6 +55,14 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+CORS_ORIGIN_ALLOW_ALL = True  # If you want to allow all origins
+
+# OR
+
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:5173',  # Replace with the actual origin of your React app
 ]
 
 ROOT_URLCONF = 'todo_drf.urls'
