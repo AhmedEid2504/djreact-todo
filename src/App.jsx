@@ -13,15 +13,15 @@ function App() {
   useEffect(() => {
     fetchTasks();
   }, []);
-
+  //  https://todo-backend-7yrg.onrender.com/api/task-list/
   const fetchTasks = () => {
-    fetch('http://127.0.0.1:8000/api/task-list/')
+    fetch('https://todo-backend-7yrg.onrender.com/api/task-list/')
       .then((response) => response.json())
       .then((data) => setTodoList(data));
   };
 
   const addTask = (task) => {
-    fetch('http://127.0.0.1:8000/api/task-create/', {
+    fetch('https://todo-backend-7yrg.onrender.com/api/task-create/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -33,7 +33,7 @@ function App() {
   };
 
   const updateTask = (id, updatedTask) => {
-    fetch(`http://127.0.0.1:8000/api/task-update/${id}/`, {
+    fetch(`https://todo-backend-7yrg.onrender.com/api/task-update/${id}/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ function App() {
   };
 
   const deleteTask = (id) => {
-    fetch(`http://127.0.0.1:8000/api/task-delete/${id}/`, {
+    fetch(`https://todo-backend-7yrg.onrender.com/api/task-delete/${id}/`, {
       method: 'DELETE',
     })
     .then(() => setTodoList((currentTodoList) => currentTodoList.filter((task) => task.id !== id)))
