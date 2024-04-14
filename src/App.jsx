@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import './App.css'
+import './index.css'
 
 function App() {
   const [todoList, setTodoList] = useState([]);
@@ -77,12 +77,18 @@ function App() {
     setEditing(true);
   };
 
+  const completeTask = (id) => {
+    const updatedTask = todoList.find((task) => task.id === id);
+    updatedTask.completed = !updatedTask.completed;
+    updateTask(updatedTask.id, updatedTask);
+  };
+
     return(
-      <div className='container'>
-        <div id='task-container'>
-          <div id='form-wrapper'>
+      <div className='flex justify-center items-center w-full h-screen'>
+        <div id='task-container' className='flex justify-center items-center flex-wrap'>
+          <div id='form-wrapper' className='flex flex-col flex-wrap'>
             <form onSubmit={handleSubmit} id="form">
-              <div className="flex-wrapper">
+              <div className="flex justify-center items-center p-2 flex-wrap">
                 <div style={{flex: 6}}>
                   <input onChange={handleChange} className="form-control" id="title" type="text" name="title" placeholder="Add task.." value={activeItem.title} />
                 </div>
@@ -94,9 +100,17 @@ function App() {
             </form>
             {todoList.map((task) => (
               <div key={task.id}>
-                <span>{task.title}</span>
-                <button onClick={() => editTask(task)}>Edit</button>
-                <button onClick={() => deleteTask(task.id)}>Delete</button>
+                <div className='flex flex-wrap items-center justify-between p-3 m-2 rounded-md gap-3 border-2 border-slate-500'>
+                  <span className='max-sm:w-auto w-56'>{task.title}</span>
+                  <div className='flex flex-wrap items-center gap-3 justify-center'>
+                    <button className='bg-slate-500 p-1 rounded-md text-white' onClick={() => editTask(task)}>Edit</button>
+                    <button className='bg-red-500 p-1 rounded-md text-white' onClick={() => deleteTask(task.id)}>Delete</button>
+                    {/* check for  task completion */}
+                    {/* if task complete show button that makes completed false else show button that completes it the buttons should be with checkmarks */}
+                    <input type="checkbox" className=' cursor-pointer' checked={task.completed} onChange={()=>completeTask(task.id)} />                    
+                    
+                  </div>
+                </div>
               </div>
             ))}
           </div>

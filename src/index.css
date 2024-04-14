@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+body{
+    background: rgb(2, 90, 78);
+  }
+  
+  h1, h2, h3, h4, h5, p, span, strike{
+    font-family: 'Montserrat', sans-serif;
+  
+  }
+  #task-container{
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    margin-top:100px;
+    margin-bottom:100px;
+  }
+
+  #form-wrapper{
+    background-color: #fff;
+    padding:40px;
+  }
